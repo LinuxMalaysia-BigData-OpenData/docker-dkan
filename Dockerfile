@@ -23,11 +23,15 @@ RUN apt-get update && apt-get install -y libpng12-dev libjpeg-dev libpq-dev fail
 	&& docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr \
 	&& docker-php-ext-install gd mbstring pdo pdo_mysql pdo_pgsql
 
-WORKDIR /var/www/html
+WORKDIR /var/www
 
 # http://docs.getdkan.com/dkan-documentation/dkan-developers-guide/installing-dkan
 ENV DRUPAL_VERSION 7
 
-RUN curl -fSL https://github.com/NuCivic/dkan-drops-${DRUPAL_VERSION}/archive/master.zip \
-	&& unzip master.zip \
+RUN rmdir html \
+        && git config --global user.name "Harisfazillah Jamel" \
+        && git config --global user.email "linuxmalaysia@gmail.com" \
+        && git clone --branch master https://github.com/nuams/dkan-drops-7.git dkan \
+        && mv dkan html \
+        && cd /var/www/html \
 	&& chown -R www-data:www-data sites
