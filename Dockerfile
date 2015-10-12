@@ -28,7 +28,6 @@ WORKDIR /var/www/html
 # http://docs.getdkan.com/dkan-documentation/dkan-developers-guide/installing-dkan
 ENV DRUPAL_VERSION 7
 
-RUN curl -fSL "https://github.com/NuCivic/dkan-drops-${DRUPAL_VERSION}/archive/master.zip" -o drupal.tar.gz \
-	&& tar -xz --strip-components=1 -f drupal.tar.gz \
-	&& rm drupal.tar.gz \
+RUN curl -fSL "https://github.com/NuCivic/dkan-drops-${DRUPAL_VERSION}/archive/master.zip" -o master.zip \
+	&& unzip master.zip \
 	&& chown -R www-data:www-data sites
