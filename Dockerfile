@@ -28,7 +28,8 @@ WORKDIR /var/www
 # http://docs.getdkan.com/dkan-documentation/dkan-developers-guide/installing-dkan
 ENV DRUPAL_VERSION 7
 
-RUN rmdir html \
+RUN rm -rf /var/www/html/* \
+        && rmdir html \
         && git config --global user.name "Harisfazillah Jamel" \
         && git config --global user.email "linuxmalaysia@gmail.com" \
         && git clone --branch master https://github.com/nuams/dkan-drops-7.git dkan \
